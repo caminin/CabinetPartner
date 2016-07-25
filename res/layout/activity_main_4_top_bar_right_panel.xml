@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/accueil"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingLeft="10dp">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Vos impressions"
+            android:id="@+id/textView4"
+            android:gravity="center_horizontal"
+            android:textColor="@color/grey_font"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal">
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center">
+
+                <com.sample.foo.simplewidget.Libraries.DiagonalLineView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="10"
+                    android:id="@+id/textView6"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:text="12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:longClickable="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Total impressions"
+            android:id="@+id/textView5"
+            android:gravity="center_horizontal"
+            android:textColor="@color/grey_font"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal">
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center">
+
+                <com.sample.foo.simplewidget.Libraries.DiagonalLineView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="05"
+                    android:id="@+id/textView8"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="12"
+                    android:id="@+id/textView9"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <cn.iwgang.countdownview.CountdownView
+        android:id="@+id/countdownView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:gravity="center_vertical|center_horizontal"
+        app:timeBgRadius="5dp"
+        app:timeBgColor="#EEEEEE"
+        app:timeBgDivisionLineColor="#FFFFFF"
+        app:timeTextSize="25sp"
+        app:timeTextColor="#333333"
+        app:isHideTimeBackground="false"
+        app:isShowTimeBgDivisionLine="true"
+        app:isShowDay="false"
+        app:isShowHour="false"
+        app:isShowMinute="true"
+        app:isShowSecond="true"
+        app:suffixMinute="m"
+        app:suffixSecond="s"
+        app:isTimeTextBold="true"
+        app:suffixGravity="bottom"
+        app:suffixTextColor="#AA000000"
+        app:suffixTextSize="12sp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Capacité papier"
+            android:id="@+id/textView3"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="17sp"
+            android:layout_weight="5" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:max="100"
+            android:progress="33"
+            android:progressDrawable="@drawable/my_progress_bar"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:gravity="right">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cpv_value="85"
+                app:cpv_maxValue="100"
+                app:cpv_barColor="@color/my_grey"
+                app:cpv_rimColor="@color/my_grey"
+                app:cpv_textColor="@color/my_black"
+                app:cpv_unitColor="@color/my_grey"
+                app:cpv_spinColor="@color/my_grey"
+                app:cpv_barWidth="35dp"
+                app:cpv_rimWidth="40dp"
+                app:cpv_contourSize="0dp"
+                app:cpv_autoTextSize="true"
+                app:cpv_seekMode="true"
+                app:cpv_unit="%"
+                app:cpv_showUnit="true"
+                />
+
+            <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circleView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cpv_value="90"
+                app:cpv_maxValue="100"
+                app:cpv_barColor="@android:color/holo_blue_dark"
+                app:cpv_rimColor="@color/my_grey"
+                app:cpv_textColor="@color/my_black"
+                app:cpv_unitColor="@color/my_grey"
+                app:cpv_spinColor="@android:color/holo_blue_dark"
+                app:cpv_barWidth="35dp"
+                app:cpv_rimWidth="40dp"
+                app:cpv_contourSize="0dp"
+                app:cpv_autoTextSize="true"
+                app:cpv_seekMode="true"
+                app:cpv_unit="%"
+                app:cpv_unitPosition="right_top"
+                app:cpv_unitScale="1"
+                app:cpv_textScale="1"
+                app:cpv_showUnit="true"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circleView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_column="0"
+                app:cpv_value="90"
+                app:cpv_maxValue="100"
+                app:cpv_barColor="@color/holo_pink_light"
+                app:cpv_rimColor="@color/my_grey"
+                app:cpv_textColor="@color/my_black"
+                app:cpv_unitColor="@color/my_grey"
+                app:cpv_spinColor="@color/holo_pink_light"
+                app:cpv_barWidth="35dp"
+                app:cpv_rimWidth="40dp"
+                app:cpv_contourSize="0dp"
+                app:cpv_autoTextSize="true"
+                app:cpv_seekMode="true"
+                app:cpv_unit="%"
+                app:cpv_unitPosition="right_top"
+                app:cpv_unitScale="1"
+                app:cpv_textScale="1"
+                app:cpv_showUnit="true"
+                />
+
+            <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circleView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_column="0"
+                app:cpv_value="100"
+                app:cpv_maxValue="100"
+                app:cpv_barColor="@android:color/black"
+                app:cpv_rimColor="@color/my_grey"
+                app:cpv_textColor="@color/my_black"
+                app:cpv_unitColor="@color/my_grey"
+                app:cpv_spinColor="@android:color/black"
+                app:cpv_barWidth="35dp"
+                app:cpv_rimWidth="40dp"
+                app:cpv_contourSize="0dp"
+                app:cpv_autoTextSize="true"
+                app:cpv_seekMode="true"
+                app:cpv_unit="%"
+                app:cpv_unitPosition="right_top"
+                app:cpv_unitScale="1"
+                app:cpv_textScale="1"
+                app:cpv_showUnit="true"
+                />
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

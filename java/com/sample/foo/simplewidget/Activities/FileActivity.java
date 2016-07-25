@@ -1,87 +1,95 @@
 package com.sample.foo.simplewidget.Activities;
 
-import android.content.res.Resources;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
-import com.github.ksoichiro.android.observablescrollview.ScrollState;
-import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
-import com.nineoldandroids.view.ViewHelper;
+import com.kogitune.activity_transition.ActivityTransition;
+import com.kogitune.activity_transition.ExitActivityTransition;
 import com.sample.foo.simplewidget.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class FileActivity extends BaseActivity implements ObservableScrollViewCallbacks {
+/**
+ * Used to show the infos of a file in the job list.
+ * Use some animation with library AnimationClass, so it contains an enter animation and an exit animation
+ */
+public class FileActivity extends AppCompatActivity   {
 
     private String TAG="FileActivity";
-    @Bind(R.id.file_title)  TextView file_title;
-    @Bind(R.id.image)       View mImageView;
-    @Bind(R.id.toolbar)     View mToolbarView;
-    @Bind(R.id.scroll)      ObservableScrollView mScrollView;
-    private int mParallaxImageHeight;
-    private float maxTextSize;
+    //All xml used with Butterknife
+    @Bind(R.id.file_title)  TextView file_title;//File_name
+    @Bind(R.id.image)       View mImageView;//Image
+    @Bind(R.id.toolbar)     Toolbar toolbar;
+    @Bind(R.id.file_details)LinearLayout file_details; //All the content
+
+
+    private int duration=1000; // duration of the enter and exit animation
+    private ExitActivityTransition exitTransition; //the exit animation is stored here
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.file_layout);
+        //If SDK is too high, AnimationClass may need this
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
+        setContentView(R.layout.activity_file_details);
         ButterKnife.bind(this);
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        //Run the enter animation
+        new AnimationClass().execute(savedInstanceState,null,null);
+
+        //set the title of the toolbar
+        if (toolbar != null) {
+            toolbar.setTitle(R.string.activity_file_title);
+            toolbar.setSubtitle(R.string.activity_file_subtitle);
+        }
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
+        file_title.setText(getIntent().getStringExtra("nomDoc"));
+    }
+
+    /**
+     * AsyncTask to wait some time, needed to have a good animation (The picture floats to the left,
+     * then (and it waits here) the text appears. This need to be ASync to use wait.
+     * You have to pass Bundle to launch the animation
+     */
+    private class AnimationClass extends AsyncTask<Bundle, Void, Void> {
+        @Override
+        protected Void doInBackground(Bundle... params) {
+            synchronized(this){
+                try {
+                    //run the animation and store the exit animation
+                    exitTransition = ActivityTransition.with(getIntent()).to(mImageView).duration(duration).start(params[0]);
+                    wait((long)(duration/1.5));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        });
+            return null;
+        }
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        maxTextSize = getResources().getDimension(R.dimen.text_file_detail)/dm.scaledDensity;
-
-        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.Samsung_blue)));
-
-        mScrollView.setScrollViewCallbacks(this);
-
-        mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.parallax_image_height);
-
-        //((NumberProgressBar)findViewById(R.id.number_progress_bar)).setProgress(getIntent().getIntExtra("progress",0));
-        //((TextView)findViewById(R.id.file_name)).setText(getIntent().getStringExtra("text"));
+        @Override
+        protected void onPostExecute(Void result) {
+            file_details.setVisibility(View.VISIBLE);
+        }
     }
 
+    /**
+     * When you exit, you need to launch the exit animation
+     */
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        onScrollChanged(mScrollView.getCurrentScrollY(), false, false);
+    public void onBackPressed() {
+        file_details.setVisibility(View.INVISIBLE);
+        exitTransition.exit(this);
+        super.onBackPressed();
     }
-
-    @Override
-    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-        int baseColor = getResources().getColor(R.color.Samsung_blue);
-        float alpha = Math.min(1, (float) scrollY / mParallaxImageHeight);
-        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor));
-        ViewHelper.setTranslationY(mImageView, scrollY / 2);
-        float textSize = Math.max(maxTextSize/10, maxTextSize-maxTextSize*alpha/2);
-        file_title.setTextSize(textSize);
-
-    }
-
-    @Override
-    public void onDownMotionEvent() {
-    }
-
-    @Override
-    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-    }
-}
+};

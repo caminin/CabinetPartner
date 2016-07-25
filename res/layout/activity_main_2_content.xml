@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.sample.foo.simplewidget.Activities.MainActivity"
+    tools:showIn="@layout/activity_main_1_nav_drawer"
+    android:orientation="horizontal"
+    android:clipToPadding="false"
+    android:background="#FFFFFF">
+
+
+    <!--Left panel-->
+    <include layout="@layout/activity_main_3_left_panel" />
+
+    <!--Right Panel-->
+    <include layout="@layout/activity_main_3_right_panel" />
+
+
+</LinearLayout>

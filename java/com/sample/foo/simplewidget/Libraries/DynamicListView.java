@@ -36,14 +36,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.sample.foo.simplewidget.Adapter.MyAdapter;
-import com.sample.foo.simplewidget.R;
-import com.sample.foo.simplewidget.Test.StableArrayAdapter;
-
-import android.widget.BaseAdapter;
+import com.sample.foo.simplewidget.Adapter.DragAndDropAdapter;
 
 import java.util.ArrayList;
 
@@ -74,7 +69,7 @@ public class DynamicListView extends ListView {
 
     private final int SMOOTH_SCROLL_AMOUNT_AT_EDGE = 15;
     private final int MOVE_DURATION = 150;
-    private final int LINE_THICKNESS = 10;
+    private final int LINE_THICKNESS = 5;
 
     public ArrayList<String> mCheeseList;
 
@@ -85,7 +80,7 @@ public class DynamicListView extends ListView {
 
     private int mTotalOffset = 0;
 
-    private boolean mCellIsMobile = false;
+    public boolean mCellIsMobile = false;
     private boolean mIsMobileScrolling = false;
     private int mSmoothScrollAmountAtEdge = 0;
 
@@ -94,7 +89,7 @@ public class DynamicListView extends ListView {
     private long mMobileItemId = INVALID_ID;
     private long mBelowItemId = INVALID_ID;
 
-    private BitmapDrawable mHoverCell;
+    public BitmapDrawable mHoverCell;
     private Rect mHoverCellCurrentBounds;
     private Rect mHoverCellOriginalBounds;
 
@@ -103,6 +98,8 @@ public class DynamicListView extends ListView {
 
     private boolean mIsWaitingForScrollFinish = false;
     private int mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
+
+    private Context context;
 
     public DynamicListView(Context context) {
         super(context);
@@ -120,6 +117,7 @@ public class DynamicListView extends ListView {
     }
 
     public void init(Context context) {
+        this.context=context;
         setOnItemLongClickListener(mOnItemLongClickListener);
         setOnScrollListener(mScrollListener);
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
@@ -139,7 +137,7 @@ public class DynamicListView extends ListView {
                     int itemNum = position - getFirstVisiblePosition();
 
                     View selectedView = getChildAt(itemNum);
-                    MyAdapter myadapter=(MyAdapter)getAdapter();
+                    DragAndDropAdapter myadapter=(DragAndDropAdapter)getAdapter();
                     mMobileItemId = myadapter.getItemId(position);
                     getViewForID(mMobileItemId).setVisibility(INVISIBLE);
                     mHoverCell = getAndAddHoverView(selectedView);
@@ -210,7 +208,7 @@ public class DynamicListView extends ListView {
      */
     private void updateNeighborViewsForID(long itemID) {
         int position = getPositionForID(itemID);
-        MyAdapter adapter = ((MyAdapter)getAdapter());
+        DragAndDropAdapter adapter = ((DragAndDropAdapter)getAdapter());
         mAboveItemId = adapter.getItemId(position - 1);
         mBelowItemId = adapter.getItemId(position + 1);
     }
@@ -218,7 +216,7 @@ public class DynamicListView extends ListView {
     /** Retrieves the view in the list corresponding to itemID */
     public View getViewForID (long itemID) {
         int firstVisiblePosition = getFirstVisiblePosition();
-        MyAdapter adapter = ((MyAdapter)getAdapter());
+        DragAndDropAdapter adapter = (DragAndDropAdapter)(getAdapter());
         for(int i = 0; i < getChildCount(); i++) {
             View v = getChildAt(i);
             int position = firstVisiblePosition + i;
@@ -240,6 +238,8 @@ public class DynamicListView extends ListView {
         }
     }
 
+
+
     /**
      *  dispatchDraw gets invoked when all the child views are about to be drawn.
      *  By overriding this method, the hover cell (BitmapDrawable) can be drawn
@@ -253,14 +253,18 @@ public class DynamicListView extends ListView {
         }
     }
 
+
+
     @Override
     public boolean onTouchEvent (MotionEvent event) {
+        final int MIN_DISTANCE = 150;
 
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
                 mDownX = (int)event.getX();
                 mDownY = (int)event.getY();
                 mActivePointerId = event.getPointerId(0);
+
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mActivePointerId == INVALID_POINTER_ID) {
@@ -338,8 +342,8 @@ public class DynamicListView extends ListView {
         View mobileView = getViewForID(mMobileItemId);
         View aboveView = getViewForID(mAboveItemId);
 
-        boolean isBelow = (belowView != null) && (deltaYTotal > belowView.getTop());
-        boolean isAbove = (aboveView != null) && (deltaYTotal < aboveView.getTop());
+        boolean isBelow = (belowView != null) && (deltaYTotal > (belowView.getTop()-belowView.getHeight()/3));
+        boolean isAbove = (aboveView != null) && (deltaYTotal < (aboveView.getTop()+aboveView.getHeight()/3));
 
         if (isBelow || isAbove) {
 
@@ -349,12 +353,11 @@ public class DynamicListView extends ListView {
 
             if (switchView == null) {
                 updateNeighborViewsForID(mMobileItemId);
-                Log.v(TAG,"swichview=null");
                 return;
             }
 
             // Swap the 2 items with animation for the dragNdrop feature
-            final MyAdapter adapter = (MyAdapter) getAdapter();
+            final DragAndDropAdapter adapter = (DragAndDropAdapter) getAdapter();
             adapter.swap(originalItem, getPositionForView(switchView));
 
             mDownY = mLastEventY;
@@ -433,7 +436,7 @@ public class DynamicListView extends ListView {
                     mMobileItemId = INVALID_ID;
                     mBelowItemId = INVALID_ID;
                     mobileView.setVisibility(VISIBLE);
-                    ((MyAdapter)getAdapter()).setInvisibleView("");
+                    ((DragAndDropAdapter)getAdapter()).setInvisibleView("");
                     mHoverCell = null;
                     setEnabled(true);
                     invalidate();
@@ -455,7 +458,7 @@ public class DynamicListView extends ListView {
             mMobileItemId = INVALID_ID;
             mBelowItemId = INVALID_ID;
             mobileView.setVisibility(VISIBLE);
-            ((MyAdapter)getAdapter()).setInvisibleView("");
+            ((DragAndDropAdapter)getAdapter()).setInvisibleView("");
             mHoverCell = null;
             invalidate();
         }

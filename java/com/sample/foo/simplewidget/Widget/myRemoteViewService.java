@@ -12,6 +12,9 @@ import com.sample.foo.simplewidget.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Build the view for the widget, and can add actions to the listview
+ */
 public class myRemoteViewService extends RemoteViewsService {
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
@@ -21,16 +24,9 @@ public class myRemoteViewService extends RemoteViewsService {
     class myRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {
             List<String> mCollections = new ArrayList<String>();
             private String TAG="MyRemoteViewFactory";
-            private final int list_item_layout= R.layout.list_item_1;
+            private final int list_item_layout= R.layout.widget_list_file;
 
             Context mContext = null;
-            /*
-
-
-
-
-
-             */
             public myRemoteViewFactory(Context context, Intent intent) {
                 mContext = context;
             }
@@ -61,7 +57,7 @@ public class myRemoteViewService extends RemoteViewsService {
                 final Bundle bundle = new Bundle();
                 bundle.putString(SimpleWidgetProvider.EXTRA_STRING,mCollections.get(position));
                 fillInIntent.putExtras(bundle);
-                mView.setOnClickFillInIntent(R.id.imageButtonHaut, fillInIntent);
+                mView.setOnClickFillInIntent(R.id.widget_list_file, fillInIntent);
 
                 return mView;
             }
@@ -89,7 +85,7 @@ public class myRemoteViewService extends RemoteViewsService {
             private void initData() {
                 mCollections.clear();
                 for (int i = 1; i <= 10; i++) {
-                    mCollections.add("ListView item " + i);
+                    mCollections.add("Impression numéro " + i);
                 }
             }
 

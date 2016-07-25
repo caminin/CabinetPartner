@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="90"
+        android:weightSum="1"
+        android:background="@color/Samsung_blue">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button_delete_file"
+            android:src="@drawable/ic_delete_black_36dp"
+            android:layout_weight="0.1"
+            android:background="@color/Samsung_blue" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button_transfer_file"
+            android:src="@drawable/ic_send_black_24dp"
+            android:background="@color/Samsung_blue"
+            android:layout_weight="0.1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Restant : 00:25"
+            android:id="@+id/textView13"
+            android:layout_weight="0.7"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@color/Samsung_blue"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/list_printer"
+            android:src="@drawable/ic_list_black_36dp"
+            android:background="@color/Samsung_blue"
+            android:layout_weight="0.02"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Imprimante1"
+            android:id="@+id/textView14"
+            android:layout_weight="0.1"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/abc_search_url_text_selected"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="20"
+        android:visibility="visible"
+        android:stackFromBottom="false"
+        android:background="#FFFFFF" />
+
+</LinearLayout>

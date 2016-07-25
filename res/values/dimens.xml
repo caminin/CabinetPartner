@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="weight_left_panel" format="integer" type="integer">1</item>
+    <item name="weight_right_panel" format="integer" type="integer">2</item>
+    <dimen name="shadow_width">6dp</dimen>
+    <dimen name="shadow_height">6dp</dimen>
+
+    <dimen name="file_image_size_height">70dp</dimen>
+    <dimen name="file_image_size_width">40dp</dimen>
+    <dimen name="printer_image_size">50dp</dimen>
+
+    <dimen name="vertical_divider_width">1dp</dimen>
+
     <dimen name="widget_margin">8dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="text_file_detail">28sp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="app_bar_height">190dp</dimen>
     <dimen name="item_width">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -57,6 +68,12 @@
 
     <dimen name="list_text_size">16sp</dimen>
     <dimen name="list_item_height">48dip</dimen>
+
+    <dimen name="padding_card_top_invisible">-10dip</dimen>
+    <dimen name="padding_card_left_invisible">-10dip</dimen>
+    <dimen name="padding_card_left_visible">0dp</dimen>
+    <dimen name="padding_card_right_invisible">-10dip</dimen>
+    <dimen name="padding_card_right_visible">0dp</dimen>
 
 
 

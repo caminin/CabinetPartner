@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="DribSearchView" >
+        <attr name="breadth" format="integer"  />
+        <attr name="search_color" format="color" />
+    </declare-styleable>
+
     <declare-styleable name="RobotoTextView">
         <attr name="typeface"/>
     </declare-styleable>
 
-    <declare-styleable name="CountDownView">
-        <attr name="showHour" format="boolean"/>
-        <attr name="showMin" format="boolean"/>
-        <attr name="showSec" format="boolean"/>
-        <attr name="showMilli" format="boolean"/>
-        <attr name="numberColor" format="reference"/>
-        <attr name="unitColor" format="reference"/>
+    <declare-styleable name="DrawShadowFrameLayout">
+        <attr name="shadowDrawable" format="reference" />
+        <attr name="shadowVisible" format="boolean" />
     </declare-styleable>
 
     <!-- Changing the attribute must be reflected in the com.devspark.robototextview.widget.RobotoTextView -->
