@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:columnCount="4"
+    android:rowCount="4"
+    android:columnOrderPreserved="true"
+    android:useDefaultMargins="true"
+    android:rowOrderPreserved="true"
+    android:padding="10sp"
+    android:longClickable="false"
+    android:paddingLeft="30sp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/myborder"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:id="@+id/linearLayout"
+        android:paddingRight="50sp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50sp">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+            android:layout_weight="0.15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="File d&apos;attente"
+                    android:id="@+id/textView9"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:textColor="#000000"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Estimation"
+                    android:id="@+id/textView10"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000000"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="25sp"
+                    android:textSize="21sp" />
+            </LinearLayout>
+
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:scrollingCache="true"
+                android:smoothScrollbar="false"
+                android:layout_alignParentLeft="true"
+            android:drawSelectorOnTop="false"
+            android:layout_alignTop="@+id/textView12"
+            android:layout_toLeftOf="@+id/textView12"
+            android:layout_toStartOf="@+id/textView12"
+            android:layout_marginLeft="10sp"
+            android:layout_weight="0.85"
+            android:layout_marginBottom="5sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="207 Sec"
+        android:id="@+id/textView12"
+        android:background="@drawable/mycircle"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

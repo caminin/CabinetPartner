@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="2dp"
+    android:background="@android:color/background_light">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <ch.halcyon.squareprogressbar.SquareProgressBar
+            android:id="@+id/sprogressbar"
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+        </ch.halcyon.squareprogressbar.SquareProgressBar>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Imprimante 1"
+            android:id="@+id/file_name"
+            android:transitionName="@string/transitionText"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+
+</LinearLayout>
